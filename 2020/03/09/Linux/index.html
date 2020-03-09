@@ -1,0 +1,1540 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Linux," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Linux基础 系统分区 - 主分区最多有四个，其中可至多包含一个扩展分区，扩展分区用于划分逻辑分区    格式化（逻辑格式化），指将一个分区进行划分为多个块，在linux中格式化将分区划分为等大小的块（block），每块4kb，当一个block被一个文件占用后将不可在被其他文件更改。当存储一个文件时，有一个表（i-node list）来记录文件和其对应的位置，每个文件都有其各自的编号（i-节点号">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux">
+<meta property="og:url" content="http://yoursite.com/2020/03/09/Linux/index.html">
+<meta property="og:site_name" content="自渡">
+<meta property="og:description" content="Linux基础 系统分区 - 主分区最多有四个，其中可至多包含一个扩展分区，扩展分区用于划分逻辑分区    格式化（逻辑格式化），指将一个分区进行划分为多个块，在linux中格式化将分区划分为等大小的块（block），每块4kb，当一个block被一个文件占用后将不可在被其他文件更改。当存储一个文件时，有一个表（i-node list）来记录文件和其对应的位置，每个文件都有其各自的编号（i-节点号">
+<meta property="og:image" content="e:%5CTypora_pic%5C1581593998711.png">
+<meta property="og:image" content="e:%5CTypora_pic%5C1581594770457.png">
+<meta property="og:image" content="e:%5CTypora_pic%5C1581595192220.png">
+<meta property="og:image" content="e:%5CTypora_pic%5C1581595306723.png">
+<meta property="og:image" content="e:%5CTypora_pic%5C1581596007808.png">
+<meta property="og:image" content="e:%5CTypora_pic%5C1581847117583.png">
+<meta property="og:image" content="e:%5CTypora_pic%5C1581847244951.png">
+<meta property="og:image" content="e:%5CTypora_pic%5C1581933347782.png">
+<meta property="og:image" content="e:%5CTypora_pic%5C1581934069583.png">
+<meta property="og:image" content="e:%5CTypora_pic%5C1581936468894.png">
+<meta property="og:image" content="e:%5CTypora_pic%5C1582622281474.png">
+<meta property="og:image" content="e:%5CTypora_pic%5C1582622578685.png">
+<meta property="og:image" content="e:%5CTypora_pic%5C1582622972667.png">
+<meta property="og:image" content="e:%5CTypora_pic%5C1582623753745.png">
+<meta property="og:image" content="e:%5CTypora_pic%5C1582634451537.png">
+<meta property="og:image" content="e:%5CTypora_pic%5C1582633649501.png">
+<meta property="og:image" content="e:%5CTypora_pic%5C1582634027011.png">
+<meta property="og:image" content="e:%5CTypora_pic%5C1582780661614.png">
+<meta property="og:image" content="e:%5CTypora_pic%5C1582780840982.png">
+<meta property="og:image" content="e:%5CTypora_pic%5C1582780979367.png">
+<meta property="og:image" content="e:%5CTypora_pic%5C1582781621532.png">
+<meta property="og:image" content="e:%5CTypora_pic%5C1582781719184.png">
+<meta property="og:image" content="e:%5CTypora_pic%5C1582782126040.png">
+<meta property="og:image" content="e:%5CTypora_pic%5C1582782192633.png">
+<meta property="og:image" content="e:%5CTypora_pic%5C1582782367800.png">
+<meta property="og:image" content="e:%5CTypora_pic%5C1582794046849.png">
+<meta property="og:image" content="e:%5CTypora_pic%5C1582794423149.png">
+<meta property="og:image" content="e:%5CTypora_pic%5C1582794660536.png">
+<meta property="og:image" content="e:%5CTypora_pic%5C1582795022598.png">
+<meta property="og:image" content="e:%5CTypora_pic%5C1582795072835.png">
+<meta property="og:image" content="e:%5CTypora_pic%5C1582795613652.png">
+<meta property="og:image" content="e:%5CTypora_pic%5C1582795840899.png">
+<meta property="og:image" content="e:%5CTypora_pic%5C1582795973706.png">
+<meta property="og:image" content="e:%5CTypora_pic%5C1582796066067.png">
+<meta property="og:image" content="e:%5CTypora_pic%5C1582796135843.png">
+<meta property="og:image" content="e:%5CTypora_pic%5C1582956370992.png">
+<meta property="og:image" content="e:%5CTypora_pic%5C1582956477726.png">
+<meta property="og:image" content="e:%5CTypora_pic%5C1582956814055.png">
+<meta property="og:image" content="e:%5CTypora_pic%5C1582956963773.png">
+<meta property="og:image" content="e:%5CTypora_pic%5C1582957089687.png">
+<meta property="og:image" content="e:%5CTypora_pic%5C1582957416707.png">
+<meta property="og:image" content="e:%5CTypora_pic%5C1582957584873.png">
+<meta property="og:image" content="e:%5CTypora_pic%5C1582957694371.png">
+<meta property="og:image" content="e:%5CTypora_pic%5C1582957774982.png">
+<meta property="og:image" content="e:%5CTypora_pic%5C1582957922651.png">
+<meta property="og:image" content="e:%5CTypora_pic%5C1582958101057.png">
+<meta property="og:image" content="e:%5CTypora_pic%5C1582959379739.png">
+<meta property="og:image" content="e:%5CTypora_pic%5C1582959445068.png">
+<meta property="og:image" content="e:%5CTypora_pic%5C1582959563660.png">
+<meta property="og:image" content="e:%5CTypora_pic%5C1582962148185.png">
+<meta property="og:image" content="e:%5CTypora_pic%5C1582962317131.png">
+<meta property="og:image" content="e:%5CTypora_pic%5C1582962747268.png">
+<meta property="og:image" content="e:%5CTypora_pic%5C1582962925874.png">
+<meta property="og:image" content="e:%5CTypora_pic%5C1583055529620.png">
+<meta property="og:image" content="e:%5CTypora_pic%5C1583055657422.png">
+<meta property="og:image" content="e:%5CTypora_pic%5C1583055771266.png">
+<meta property="og:image" content="e:%5CTypora_pic%5C1583055800755.png">
+<meta property="og:image" content="e:%5CTypora_pic%5C1583055856009.png">
+<meta property="og:image" content="e:%5CTypora_pic%5C1583056080759.png">
+<meta property="og:image" content="e:%5CTypora_pic%5C1583056116005.png">
+<meta property="og:image" content="e:%5CTypora_pic%5C1583056308615.png">
+<meta property="og:image" content="e:%5CTypora_pic%5C1583056580494.png">
+<meta property="og:image" content="e:%5CTypora_pic%5C1583056794047.png">
+<meta property="og:image" content="e:%5CTypora_pic%5C1583056936430.png">
+<meta property="og:image" content="e:%5CTypora_pic%5C1583057224168.png">
+<meta property="og:image" content="e:%5CTypora_pic%5C1583057318421.png">
+<meta property="og:image" content="e:%5CTypora_pic%5C1583057407673.png">
+<meta property="og:image" content="e:%5CTypora_pic%5C1583057742627.png">
+<meta property="og:image" content="e:%5CTypora_pic%5C1583058022857.png">
+<meta property="og:image" content="e:%5CTypora_pic%5C1583058143790.png">
+<meta property="og:image" content="e:%5CTypora_pic%5C1583058589343.png">
+<meta property="og:image" content="e:%5CTypora_pic%5C1583058711593.png">
+<meta property="og:image" content="e:%5CTypora_pic%5C1583058865193.png">
+<meta property="og:image" content="e:%5CTypora_pic%5C1583059190079.png">
+<meta property="og:image" content="e:%5CTypora_pic%5C1583059311419.png">
+<meta property="og:image" content="e:%5CTypora_pic%5C1583059378885.png">
+<meta property="og:image" content="e:%5CTypora_pic%5C1583059774645.png">
+<meta property="og:image" content="e:%5CTypora_pic%5C1583059878871.png">
+<meta property="og:image" content="e:%5CTypora_pic%5C1583060039691.png">
+<meta property="og:image" content="e:%5CTypora_pic%5C1583060868418.png">
+<meta property="og:image" content="e:%5CTypora_pic%5C1583061387327.png">
+<meta property="article:published_time" content="2020-03-08T16:00:00.000Z">
+<meta property="article:modified_time" content="2020-03-09T08:50:22.920Z">
+<meta property="article:author" content="宫宛莹">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="e:%5CTypora_pic%5C1581593998711.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/03/09/Linux/"/>
+
+
+
+
+
+  <title>Linux | 自渡</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">自渡</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">热爱可抵岁月漫长</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/09/Linux/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="宫宛莹">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/userphoto.JPG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="自渡">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Linux</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-09T00:00:00+08:00">
+                2020-03-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Learning/" itemprop="url" rel="index">
+                    <span itemprop="name">Learning</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1>Linux基础</h1>
+<h2>系统分区</h2>
+- 主分区最多有四个，其中可至多包含一个扩展分区，扩展分区用于划分逻辑分区
+
+<p><img src="E:%5CTypora_pic%5C1581593998711.png" alt="1581593998711"></p>
+<ul>
+<li><p>格式化（逻辑格式化），指将一个分区进行划分为多个块，在linux中格式化将分区划分为等大小的块（block），每块4kb，当一个block被一个文件占用后将不可在被其他文件更改。当存储一个文件时，有一个表（i-node list）来记录文件和其对应的位置，每个文件都有其各自的编号（i-节点号/i-node num），其对应着文件存储的block集合，当查找文件时按照这个表来查询文件都存储在哪些块中。</p>
+</li>
+<li><p>为每个分区自动生成硬件设备文件名</p>
+<p><img src="E:%5CTypora_pic%5C1581594770457.png" alt="1581594770457"></p>
+<p>如：/dev/sda1    sata接口1分区</p>
+<p><img src="E:%5CTypora_pic%5C1581595192220.png" alt="1581595192220"></p>
+<p>逻辑分区从5开始</p>
+<p><img src="E:%5CTypora_pic%5C1581595306723.png" alt="1581595306723"></p>
+</li>
+<li><p>挂载（linux分配挂载点（即win的盘符））</p>
+<p>必需分区：</p>
+<ul>
+<li>根分区</li>
+<li>swap分区（虚拟内存，某些情况下用该分区作为补充内存）</li>
+</ul>
+<p>推荐分区：</p>
+<ul>
+<li>/boot(启动分区，用于解决根分区满了的情况下启动失败的问题)</li>
+</ul>
+<p>Linux实际分区情况：</p>
+<p><img src="E:%5CTypora_pic%5C1581596007808.png" alt="1581596007808"></p>
+<p>即当向home写入时，实际是向/dev/sda2写入，向boot写入时实际是向/dev/sda1写入，向etc写入时实际是向/dev/sda3写入</p>
+</li>
+</ul>
+<p>linux：数据写入硬盘必须经过分区-&gt;格式化-&gt;为分区设置其硬件设备文件名（linux自动完成）-&gt;分配挂载点-&gt;写入</p>
+<p>windows：数据写入硬盘必须经过分区-&gt;格式化-&gt;分配盘符-&gt;写入</p>
+<h2>VMware网络连接</h2>
+hostonly：只能与主机相连
+
+<p>nat：通过主机网卡上网，无自己IP</p>
+<p>bridge：不通过主机网卡上网，自己拥有IP</p>
+<ul>
+<li>常见问题<ul>
+<li>三种模式的虚拟网卡不同VMware eth0……注意在不同模式下不同网卡是否匹配，以及虚拟网卡是连接物理机的有线还是无线网卡，物理机是通过有线还是无线上网</li>
+<li>DNS解析问题</li>
+</ul>
+</li>
+</ul>
+<h2>Linux个目录的作用</h2>
+![1581846887163](E:\Typora_pic\1581846887163.png)
+
+<p><img src="E:%5CTypora_pic%5C1581847117583.png" alt="1581847117583"></p>
+<p><img src="E:%5CTypora_pic%5C1581847244951.png" alt="1581847244951"></p>
+<h2>服务器注意事项</h2>
+- 远程服务器不允许关机，只能重启
+
+<ul>
+<li>重启时应该关闭服务</li>
+</ul>
+<h2>Linux常用命令</h2>
+<h3>文件处理命令</h3>
+- ls  +参数 +文件名
+
+<ul>
+<li><p>命令所在路径：/bin/ls</p>
+</li>
+<li><p>-a  查看所有文件，包括隐藏文件 –all</p>
+</li>
+<li><p>-l  显示文件的详细属性 –long</p>
+<ul>
+<li><p>使用权限    引用系数  所有者  所有组 大小 </p>
+<p> u    g   o</p>
+<p>所有者  所属组  其他人</p>
+<p>-rw-r—r–</p>
+<p>lrw-r–r–</p>
+<p>drw-r–r–</p>
+<p>首字符-表示普通文件</p>
+<p>​           d表示目录</p>
+<p>​            l表示软链接</p>
+</li>
+</ul>
+</li>
+<li><p>-d  查看目录属性  ls -ld</p>
+</li>
+<li><p>-h  人性化显示，常用于选择合适单位显示文件大小  –human</p>
+</li>
+<li><p>-i  查看inode（索引号）</p>
+</li>
+</ul>
+<ul>
+<li><p>mkdir + path1（新文件路径）+  path2（新文件路径）</p>
+<ul>
+<li>-p  递归新建多层子目录</li>
+</ul>
+</li>
+<li><p>pwd （显示当前文件目录）</p>
+</li>
+<li><p>rmdir + path  删除空目录</p>
+</li>
+<li><p>cp +src1+src2 +des (复制同时可以实现改名)</p>
+<ul>
+<li>-rp</li>
+<li>-r 递归复制目录</li>
+<li>-p  保留文件属性</li>
+</ul>
+</li>
+<li><p>mv  +src1+src2+des（剪切同时可以实现改名）</p>
+</li>
+<li><p>rm 删除</p>
+<ul>
+<li>-r  删除目录</li>
+<li>-f  强制删除</li>
+</ul>
+</li>
+<li><p>ln（link）</p>
+<ul>
+<li><p>ln -s src des//软链接</p>
+</li>
+<li><p>ln src des//硬链接，区别于cp -p，可以同时更新两个文件</p>
+<p>当删除了原文件时，软连接文件会消失，硬链接还可以正常访问，识别一个文件是软链接文件：ls -l显示<font color='red'>lrwxrwxrwx</font>，识别一个文件是一个硬链接：ls -i查看inode，两个文件同时指向一个inode，当删除原文件时inode的指针会减一，<font color='red'>硬链接的文件必须在同一个分区中，且不能对目录操作</font>。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3>权限管理命令</h3>
+- chmod更改权限
+
+<ul>
+<li><p>chmod [{ugoa} {+-=} {rwx}] [文件或目录] [mode=421] [文件或目录] -R(递归修改)</p>
+<p><img src="E:%5CTypora_pic%5C1581933347782.png" alt="1581933347782"></p>
+</li>
+<li><p>常用：chmod 777 filepath</p>
+<p><img src="E:%5CTypora_pic%5C1581934069583.png" alt="1581934069583"></p>
+<p>​                                    <font color='red'>权限对文件和目录不同</font></p>
+<p><img src="E:%5CTypora_pic%5C1581936468894.png" alt="1581936468894"></p>
+</li>
+</ul>
+<ul>
+<li><p>chown更改所有者</p>
+<ul>
+<li><p>chown usr filepath</p>
+</li>
+<li><p>chgrp group filepath</p>
+</li>
+<li><p>umask -S 默认的新建目录权限 cmd: touch dir       <font color='red'>mkdir xx并不遵守这个，文件要比目录每个组都少执行权限</font></p>
+<p>如目录默认权限是rwxrwxrwx对应的文件的默认目录权限是rw-rw-rw-</p>
+<p><font color='red'>设置默认权限：umask   077 设置的权限是700</font></p>
+</li>
+</ul>
+</li>
+<li><p>文件搜索命令</p>
+<ul>
+<li><p>find</p>
+<p>find 搜索范围 匹配条件</p>
+<ul>
+<li><p>find /etc -name init</p>
+<p>/etc 下文件名为init的文件</p>
+</li>
+<li><p>find /etc -name <em>init\</em></p>
+<p>/etc下文件名包含init的文件</p>
+</li>
+<li><p>find /etc -name init???</p>
+<p>/etc下文件名为init开头后加三个字符的文件</p>
+</li>
+<li><p>find /etc -iname init???</p>
+<p>不区分大小写</p>
+</li>
+<li><p>find / size +204800</p>
+<p>在根目录下查找大于100MB的文件</p>
+<p>1个数据块 512字节</p>
+</li>
+<li><p>find /home -user shenchao</p>
+<p>查找所属者为shenchao的文件</p>
+</li>
+<li><p>find /etc -cmin -5</p>
+<p>查找5分钟内被修改过属性的文件和目录</p>
+<p>-amin访问时间    -cmin文件属性 -mmin文件内容</p>
+</li>
+<li><p>find /etc -size +163840 -a -size -204800</p>
+<p>在根目录下查找大于80MB小于100MB的文件</p>
+<p>-a 两个条件同时满足</p>
+<p>-o 两个条件满足一个</p>
+</li>
+<li><p>find /etc -name init -exec ls -l {} ;</p>
+<p>在/etc下查找init文件并显示其详细信息</p>
+<p>-exec/-ok +命令+{};       对搜索结果执行操作</p>
+</li>
+<li><p>-type 根据文件类型查找</p>
+<p>f 文件 d目录 l链接文件</p>
+</li>
+<li><p>-inum 根据i节点查找</p>
+<p>ls -i查出inum</p>
+<p>find . -inum xxx -exec rm {} ;</p>
+<p>还可用于查找一个文件的硬链接</p>
+<p>ls -i 查出inum后，在该分区下查找find . -inum xxx可找到所有指向该节点的文件</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>locate 所搜速度较快，database不会收录/tmp下的文件</p>
+<ul>
+<li>locate 文件名（-i 不区分大小写）</li>
+<li>updatedb更新locate文件数据库</li>
+</ul>
+</li>
+<li><p>which+命令 查找命令所在目录及别名信息</p>
+</li>
+<li><p>whereis +命令 搜索命令所在目录及帮助文档路径</p>
+</li>
+<li><p>grep -iv +指定字符串 +文件   在文件中搜索字符串匹配的行并输出</p>
+<p>  -i 不区分大小写</p>
+<p>  -v 排除指定字符串</p>
+<p>  ^尖角号表示行首</p>
+<p>  eg: grep  -v  ^#  /etc/xx.conf       //搜索xx.conf中除去以#开头的行</p>
+</li>
+<li><p>man +命令   获取命令帮助信息，进入后同vim的搜索关键词，空格翻页回车换行:q退出</p>
+<p>man+配置文件名（不是文件路径）  查看配置文件格式</p>
+<p>帮助类型：1是命令帮助 5是配置文件格式帮助</p>
+<p>eg: man 5 passwd</p>
+</li>
+<li><p>whatis +命令名  只获取命令简短说明</p>
+</li>
+<li><p>apropos+配置文件名  只获取配置文件简短说明</p>
+</li>
+<li><p>命令名+–help   或    help + 命令     只列出常见参数，用于查看内置命令的格式</p>
+</li>
+</ul>
+<h3>用户管理命令</h3>
+-  useradd 用户名//添加用户
+-  passwd //更改当前用户密码
+-  who //显示当前登录的用户  登陆终端（远程【pts】或本地【tty】）登陆时间
+-  w  //显示当前登录的用户及更详细的信息
+
+<h3>压缩解压命令</h3>
+  - gzip + 文件名 压缩成gz格式（不可压缩目录）
+
+<ul>
+<li><p>gunzip +文件名 或 gzip -d解压缩</p>
+</li>
+<li><p>tar -cvfz + 生成的文件名+ 源文件名（可压缩目录） -c打包 -v打包信息 -f打包名 -z创建打包的压缩包 -x解包</p>
+</li>
+<li><p>zip -r 压缩后文件名 源文件或目录       -r压缩目录</p>
+</li>
+<li><p>unzip+xx.zip解压缩</p>
+</li>
+<li><p>bzip2 -k 源文件      -k保留原文件                       <font color='red'>压缩比较大，适合大文件压缩</font></p>
+<p>tar -cjf xx.bz2 xx     ==    bzip2 xx</p>
+<p>tar -xjf xx.bz2 xx     ==    bunzip2 xx</p>
+</li>
+</ul>
+<h3>网络命令</h3>
+- write + 用户名       出现光标后写具体内容，delete或者CTRL+backspace删除字符，ctrl+d发送  需要用户都在线
+
+<ul>
+<li><p>wall+message    给所有用户发送message</p>
+</li>
+<li><p>ping -c（指定发送次数）+ IP/hostname    icmp探测目标主机</p>
+</li>
+<li><p>ifconfig </p>
+</li>
+<li><p>mail 用户名 目标用户可以不在线   用户输入mail查看邮件信息 输入邮件编号即可查看输入h查看邮件列表 输入d+编号删除邮件</p>
+</li>
+<li><p>last  查看用户登录记录</p>
+</li>
+<li><p>lastlog 查看所有用户的登陆记录（包括未登陆过的用户）</p>
+</li>
+<li><p>lastlog -u uid 查看uid用户登陆记录</p>
+</li>
+<li><p>traceroute 显示数据包经过的路径</p>
+</li>
+<li><p>netstat 查询网络状态</p>
+<p>-t 查询tcp协议</p>
+<p>-u 查询udp协议</p>
+<p>-l  端口是否监听</p>
+<p>-r 路由表IP table/网关</p>
+<p>-n 显示IP地址和端口号</p>
+<p>-a 显示所有</p>
+</li>
+<li><p>service network restart 网络重启</p>
+</li>
+<li><p>mount 【-t 文件系统】 设备文件名（系统默认的为/dev/sr0） 挂载点</p>
+</li>
+</ul>
+<p>eg: mount -t iso9660 /dev/sr0  /mnt/cdrom</p>
+<p>挂载过程：插入光盘-&gt;mkdir /mnt/cdrom(创建挂载点)-&gt;mount [-t iso9660可省略] /dev/sr0  /mnt/cdrom</p>
+<p>卸载过程：跳出挂载目录-&gt;umount /dev/sr0或 /mnt/cdrom</p>
+<h3>关机重启命令</h3>
+- shutdown（推荐）
+
+<p>  -c 取消前一个关机命令</p>
+<p>  -h 关机      shutdown -h +时间点 或  now</p>
+<p>  -r 重启       shutdown -r +时间点 或  now</p>
+<ul>
+<li><p>其他关机命令</p>
+<ul>
+<li>halt</li>
+<li>poweroff（直接断电，不安全）</li>
+<li>init 0</li>
+</ul>
+</li>
+<li><p>其他重启命令</p>
+<ul>
+<li>reboot</li>
+<li>init 6</li>
+</ul>
+</li>
+<li><p>init命令</p>
+<ul>
+<li>0  关机</li>
+<li>1  单用户（root最小化启动，启动最必要的程序）</li>
+<li>2  不完全多用户，不含nfs服务</li>
+<li>3  完全多用户</li>
+<li>4  未分配</li>
+<li>5  图形界面（X11）</li>
+<li>6  重启</li>
+</ul>
+</li>
+<li><p>修改系统默认运行级别</p>
+<p>cat /etc/inittab</p>
+<p>id:3:initdefault:</p>
+</li>
+<li><p>runlevel</p>
+<p>查询系统运行级别</p>
+</li>
+<li><p>logout  登出</p>
+</li>
+</ul>
+<h3>Vim</h3>
+- 常用操作
+
+<ul>
+<li><p>vim file</p>
+</li>
+<li><p>编辑模式(:)下    w保存  q退出  !强制 </p>
+<ul>
+<li><p>set nu显示行号    set nonu取消行号</p>
+</li>
+<li><p>set ic忽略大小写   set noic取消忽略大小写</p>
+</li>
+<li><p>gg到第一行  G到最后一行</p>
+</li>
+<li><p>nG到第n行</p>
+</li>
+<li><p>:n到第n行</p>
+</li>
+<li><p>$ 移至行尾</p>
+</li>
+<li><p>0 移至行首</p>
+</li>
+<li><p>u  取消上一步操作</p>
+</li>
+<li><p>r  取代光标所在处字符</p>
+</li>
+<li><p>R  从从光标所在处开始替换文字 </p>
+</li>
+<li><p>/xx 搜索指定字符串</p>
+</li>
+<li><p>n 下一个出现位置</p>
+</li>
+<li><p>指定范围搜索： %s全文范围 </p>
+</li>
+<li><p>替换  eg: %s/ftp/yang/g  将全文中所有ftp替换成yang</p>
+<p>​                :xx,yys/ftp/yang/g   将xx行到yy行的所有ftp替换成yang</p>
+<p>​                g不确认询问       c确认询问</p>
+</li>
+</ul>
+<p><img src="E:%5CTypora_pic%5C1582622281474.png" alt="1582622281474"></p>
+<p><img src="E:%5CTypora_pic%5C1582622578685.png" alt="1582622578685"></p>
+<p><img src="E:%5CTypora_pic%5C1582622972667.png" alt="1582622972667"></p>
+<p><img src="E:%5CTypora_pic%5C1582623753745.png" alt="1582623753745"></p>
+</li>
+<li><p>i/o/a插入模式    esc退出编辑模式</p>
+</li>
+</ul>
+<ul>
+<li><p>高级操作</p>
+<ul>
+<li><p>向当前文本光标处导入其他文本内容   :r</p>
+<p>eg: r /etc/issue</p>
+</li>
+<li><p>! + 命令 在不退出vim的情况下执行系统命令</p>
+</li>
+<li><p>:r !command 将command的执行结果导入到当前光标后</p>
+</li>
+<li><p>map 定义快捷键 按住ctrl+v 再按住ctrl+任意键</p>
+<p>eg: :map ^P(按住ctrl+v ctrl+p)  I#&lt;ESC&gt;   将ctrl+p定义成在行首插入#并退出插入模式</p>
+<p>​       :map ^H <a href="mailto:igonghewan@gmail.com">igonghewan@gmail.com</a>&lt;ESC&gt; 将ctrl+H定义成在光标处插入邮箱并退出插入模式</p>
+</li>
+<li><p>多行行首注释</p>
+<p>:xx,yys/^/#/g</p>
+</li>
+<li><p>多行去注释（将xx到yy行所有的#去掉）</p>
+<p>:xx,yys/#//g</p>
+</li>
+<li><p>行首去注释</p>
+<p>:xx,yys/^#//g</p>
+</li>
+<li><p>当注释是//时需要转义字符//</p>
+</li>
+<li><p>:a b 设置为将输入的a自动转换为b</p>
+</li>
+</ul>
+</li>
+<li><p>永久生效：在 ~/.vimrc中写入上述命令</p>
+</li>
+</ul>
+<h3>软件包管理</h3>
+暂空
+
+<h3>用户和用户组管理</h3>
+- 用户信息文件 /etc/passwd
+
+<p>  man 5 passwd查看文件详细信息</p>
+<ul>
+<li><p>工程中在为用户提升权限为root时，即可更改passwd中对应用户的uid为0，此后系统将视该用户与root为同一个用户</p>
+</li>
+<li><p>初始组和附加组</p>
+<p><img src="E:%5CTypora_pic%5C1582634451537.png" alt="1582634451537"></p>
+</li>
+</ul>
+<ul>
+<li><p>影子文件/etc/shadow</p>
+<p>存储加密真正的密码后得到的密文</p>
+</li>
+<li><p><font color='red'>passwd与shadow文件之间的联系</font></p>
+<p><img src="E:%5CTypora_pic%5C1582633649501.png" alt="1582633649501"></p>
+<p><img src="E:%5CTypora_pic%5C1582634027011.png" alt="1582634027011"></p>
+<p>shadow文件中用户密码的部分是*或者!!时代表无密码，不能登录</p>
+<p>当给用户密码前添加!后代表禁用该用户</p>
+<p><font color='red'>passwd文件中密码部分是x的情况下，当用户登陆时系统会去查询shadow文件，进行密码对比，以root身份可将x去掉表示该用户无密码，即可免去登陆验证</font></p>
+</li>
+<li><p>组信息文件/etc/group和组密码文件/etc/gshadow</p>
+<p>其关系同passwd和shadow的关系相似</p>
+<p><img src="E:%5CTypora_pic%5C1582780661614.png" alt="1582780661614"></p>
+<p><img src="E:%5CTypora_pic%5C1582780840982.png" alt="1582780840982"></p>
+</li>
+<li><p>用户家目录</p>
+<p><img src="E:%5CTypora_pic%5C1582780979367.png" alt="1582780979367"></p>
+</li>
+</ul>
+<ul>
+<li><p>用户邮箱</p>
+<p>/var/spool/mail/用户名/</p>
+</li>
+<li><p>用户模板目录  可以设置每添加一个新用户初始的家目录中包含的文件</p>
+<p>/etc/skel/</p>
+</li>
+<li><p>用户管理命令</p>
+<ul>
+<li>useradd</li>
+</ul>
+<p>​    </p>
+<ul>
+<li><p><img src="E:%5CTypora_pic%5C1582781621532.png" alt="1582781621532"></p>
+</li>
+</ul>
+<p>执行useradd命令后实际执行了几步操作，通过下列命令查看相应文件的改变</p>
+<p><img src="E:%5CTypora_pic%5C1582781719184.png" alt="1582781719184"></p>
+<p>eg:</p>
+<p><img src="E:%5CTypora_pic%5C1582782126040.png" alt="1582782126040"></p>
+<p><font color='red'>\  换行</font></p>
+<p>​                                                        <img src="E:%5CTypora_pic%5C1582782192633.png" alt="1582782192633"></p>
+<p><img src="E:%5CTypora_pic%5C1582782367800.png" alt="1582782367800"></p>
+<ul>
+<li><p>passwd user </p>
+<p>设置密码（更改自己的密码时只输入passwd）</p>
+<p><img src="E:%5CTypora_pic%5C1582794046849.png" alt="1582794046849"></p>
+</li>
+<li><p>usermod修改用户信息</p>
+<p><img src="E:%5CTypora_pic%5C1582794423149.png" alt="1582794423149"></p>
+</li>
+<li><p>chage修改用户密码状态</p>
+<p><img src="E:%5CTypora_pic%5C1582794660536.png" alt="1582794660536"></p>
+<p><font color='red'>常用于强制要求新用户登陆就要修改密码：chage -d 0 user </font></p>
+</li>
+<li><p>userdel删除用户</p>
+<p><img src="E:%5CTypora_pic%5C1582795022598.png" alt="1582795022598"></p>
+<p><img src="E:%5CTypora_pic%5C1582795072835.png" alt="1582795072835"></p>
+</li>
+<li><p>su</p>
+<p><img src="E:%5CTypora_pic%5C1582795613652.png" alt="1582795613652"></p>
+</li>
+<li><p>用户管理命令</p>
+<p><img src="E:%5CTypora_pic%5C1582795840899.png" alt="1582795840899"></p>
+<p><img src="E:%5CTypora_pic%5C1582795973706.png" alt="1582795973706"></p>
+<p><img src="E:%5CTypora_pic%5C1582796066067.png" alt="1582796066067"></p>
+<p><img src="E:%5CTypora_pic%5C1582796135843.png" alt="1582796135843"></p>
+</li>
+</ul>
+</li>
+</ul>
+<h3>权限管理</h3>
+  - ACL权限
+
+<pre><code>- ACL权限简介与开启
+
+  查看分区ACL权限是否开启
+
+  dumpe2fs -h /dev/sda3（分区查询命令df -h）
+
+  dumpe2fs查询指定分区详细文件系统信息的命令
+
+  -h 仅显示差几块中信息而不显示磁盘块组的详细信息
+
+  查看Default mount options项是否包含acl
+
+  若不包含需手工开启：
+
+  临时开启：mount -o remount  ,acl   (指定分区)   //重新挂载根分区并挂载加入acl权限
+
+  永久生效：
+
+  vi /etc/fstab  在指定分区后信息default后+,acl   但目前linux 的default选项中已经包含acl无需添加
+
+  mount -o remount  (指定分区)      重新挂载指定分区
+
+-  查看ACL命令与设定ACL权限
+
+  getfacle   文件名     //查看acl权限
+
+  ![1582953844787](E:\Typora_pic\1582953844787.png)
+
+  setfacl example：  
+
+  ![1582954336773](E:\Typora_pic\1582954336773.png)
+
+  查询一个文件权限ll -d 后显示drwxrwx---+&lt;font color=&apos;red&apos;&gt;+表示有acl权限设置&lt;/font&gt;
+
+  ![1582954697986](E:\Typora_pic\1582954697986.png)
+
+- 最大有效权限与ACL权限删除
+
+  ![1582955764785](E:\Typora_pic\1582955764785.png)
+
+  setfacl -m m:rx   （指定文件）   //设定最大权限为rx
+
+  ![1582955943141](E:\Typora_pic\1582955943141.png)
+
+  setfacl -b （指定文件）//删除指定文件的所有用户权限
+
+- 默认ACL权限和递归ACL权限
+
+  ![1582956133076](E:\Typora_pic\1582956133076.png)
+
+  ![1582956208390](E:\Typora_pic\1582956208390.png)</code></pre><ul>
+<li><p>文件特殊权限</p>
+<ul>
+<li><p>setuid</p>
+<p>​                                                <img src="E:%5CTypora_pic%5C1582956370992.png" alt="1582956370992"></p>
+<p><img src="E:%5CTypora_pic%5C1582956477726.png" alt="1582956477726"></p>
+<p><img src="E:%5CTypora_pic%5C1582956814055.png" alt="1582956814055"></p>
+<p><img src="E:%5CTypora_pic%5C1582956963773.png" alt="1582956963773"></p>
+<p><img src="E:%5CTypora_pic%5C1582957089687.png" alt="1582957089687"></p>
+</li>
+<li><p>setgid</p>
+<p><img src="E:%5CTypora_pic%5C1582957416707.png" alt="1582957416707"></p>
+<p>locate命令是典型的setgid例子</p>
+<p><img src="E:%5CTypora_pic%5C1582957584873.png" alt="1582957584873"></p>
+<p><img src="E:%5CTypora_pic%5C1582957694371.png" alt="1582957694371"></p>
+<p><img src="E:%5CTypora_pic%5C1582957774982.png" alt="1582957774982"></p>
+<p><img src="E:%5CTypora_pic%5C1582957922651.png" alt="1582957922651"></p>
+<p><img src="E:%5CTypora_pic%5C1582958101057.png" alt="1582958101057"></p>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code>- sticky Bit
+
+  ![1582958176825](E:\Typora_pic\1582958176825.png)
+
+  tmp目录是sbit的典型例子
+
+  ![1582958476690](E:\Typora_pic\1582958476690.png)
+
+  drwxrwxrwx&lt;font color=&apos;red&apos;&gt;t          t代表sticky bit&lt;/font&gt;
+
+  ​                                              ![1582958619250](E:\Typora_pic\1582958619250.png)</code></pre><ul>
+<li><p>文件系统属性chattr权限，对root也有限制作用，当然root也可以删除chattr的设置，chattr并不是为了限制root而是为了防止包括root在内的用户误操作</p>
+<p><img src="E:%5CTypora_pic%5C1582959379739.png" alt="1582959379739"></p>
+<p><img src="E:%5CTypora_pic%5C1582959445068.png" alt="1582959445068"></p>
+<p><img src="E:%5CTypora_pic%5C1582959563660.png" alt="1582959563660"></p>
+</li>
+<li><p>系统命令sudo权限</p>
+<p><img src="E:%5CTypora_pic%5C1582962148185.png" alt="1582962148185"></p>
+<p>​                                                  <img src="E:%5CTypora_pic%5C1582962317131.png" alt="1582962317131"></p>
+</li>
+</ul>
+<p>​                                                                 ​<img src="E:%5CTypora_pic%5C1582962747268.png" alt="1582962747268"></p>
+<p>​                                                                 #在visudo打开的文件中添加sc ALL……表示</p>
+<p>​                                                                   赋予sc用户在本机（ALL）可以执行shutdown -r now</p>
+<p>​                                                                 <img src="E:%5CTypora_pic%5C1582962925874.png" alt="1582962925874"></p>
+<h3>文件系统管理</h3>
+- 分区回顾
+
+<p>  <img src="E:%5CTypora_pic%5C1583055529620.png" alt="1583055529620"></p>
+<p>  <img src="E:%5CTypora_pic%5C1583055657422.png" alt="1583055657422"></p>
+<p>  Linux默认文件系统：</p>
+<p>  <img src="E:%5CTypora_pic%5C1583055771266.png" alt="1583055771266"></p>
+<p>  <img src="E:%5CTypora_pic%5C1583055800755.png" alt="1583055800755"></p>
+<p>  <img src="E:%5CTypora_pic%5C1583055856009.png" alt="1583055856009"></p>
+<ul>
+<li><p>常用命令</p>
+<ul>
+<li>df</li>
+</ul>
+<p><img src="E:%5CTypora_pic%5C1583056080759.png" alt="1583056080759"></p>
+<ul>
+<li>du</li>
+</ul>
+<p><img src="E:%5CTypora_pic%5C1583056116005.png" alt="1583056116005"></p>
+<p><font color='red'>df比du命令执行负载小，且df查询到的空间占用要大于du，df中还包括了系统和进程以及删除的文件占用的空间，df的空间占用情况更真实，du仅计算指定目录下各个文件占用的空间</font></p>
+<p><img src="E:%5CTypora_pic%5C1583056308615.png" alt="1583056308615"></p>
+<ul>
+<li><p>fsck</p>
+<p>​                          <img src="E:%5CTypora_pic%5C1583056580494.png" alt="1583056580494"></p>
+</li>
+<li><p>dumpe2fs</p>
+</li>
+</ul>
+<p><img src="E:%5CTypora_pic%5C1583056794047.png" alt="1583056794047"></p>
+<ul>
+<li>挂载命令</li>
+</ul>
+</li>
+</ul>
+<p>  <img src="E:%5CTypora_pic%5C1583056936430.png" alt="1583056936430"></p>
+<p>  <img src="E:%5CTypora_pic%5C1583057224168.png" alt="1583057224168"></p>
+<p>  -o：</p>
+<p>  <img src="E:%5CTypora_pic%5C1583057318421.png" alt="1583057318421"></p>
+<p>  eg:</p>
+<p>  <img src="E:%5CTypora_pic%5C1583057407673.png" alt="1583057407673"></p>
+<ul>
+<li><p>光盘挂载与卸载</p>
+<p><img src="E:%5CTypora_pic%5C1583057742627.png" alt="1583057742627"></p>
+<p>后两条命令是一样的作用，/dev/cdrom是指向/dev/sr0的软链接</p>
+<p><img src="E:%5CTypora_pic%5C1583058022857.png" alt="1583058022857"></p>
+<p><font color='red'>卸载时要注意自己跳出了光盘，否则会报错光盘正忙</font></p>
+</li>
+<li><p>u盘挂载与卸载</p>
+<p><img src="E:%5CTypora_pic%5C1583058143790.png" alt="1583058143790"></p>
+<p>卸载同光盘</p>
+</li>
+<li><p>支持NTFS文件系统</p>
+<p><img src="E:%5CTypora_pic%5C1583058589343.png" alt="1583058589343"></p>
+<p><img src="E:%5CTypora_pic%5C1583058711593.png" alt="1583058711593"></p>
+<p><img src="E:%5CTypora_pic%5C1583058865193.png" alt="1583058865193"></p>
+</li>
+</ul>
+<p>​                                                       有多个NTFS系统分区时需要逐个挂载</p>
+<ul>
+<li><p>fdisk手工分区命令</p>
+<ul>
+<li><p>分区过程</p>
+<ul>
+<li><p>新增一块物理硬盘</p>
+</li>
+<li><p>查看新硬盘是否被识别</p>
+<p><img src="E:%5CTypora_pic%5C1583059190079.png" alt="1583059190079"></p>
+</li>
+<li><p>为新硬盘划分分区 </p>
+<p><img src="E:%5CTypora_pic%5C1583059311419.png" alt="1583059311419"></p>
+<p>进入fdisk的command：</p>
+<p><img src="E:%5CTypora_pic%5C1583059378885.png" alt="1583059378885"></p>
+</li>
+<li><p>当保存分区表时可能会报错分区表占用，所以每次更改分区表后手动执行一次，会有报错信息 ，可忽略</p>
+<p><img src="E:%5CTypora_pic%5C1583059774645.png" alt="1583059774645"></p>
+</li>
+<li><p>格式化分区</p>
+</li>
+</ul>
+<p><img src="E:%5CTypora_pic%5C1583059878871.png" alt="1583059878871"></p>
+<p>​                                     mkfs -t [文件系统类型] [分区名]</p>
+<p>​                                    <font color='red'> 注意：扩展分区不可格式化，会报错</font></p>
+<ul>
+<li><p>挂载</p>
+<p><img src="E:%5CTypora_pic%5C1583060039691.png" alt="1583060039691"></p>
+</li>
+</ul>
+</li>
+<li><p>分区自动挂载与fstab文件修复</p>
+<p><img src="E:%5CTypora_pic%5C1583060868418.png" alt="1583060868418"></p>
+<p><font color='red'>该文件非常重要，错误会导致系统崩溃，故在进行编辑后使用mount -a查看是否编辑正确，报错可以修复：</font></p>
+<p>系统启动失败后输入root密码进入终端修改/etc/fstab，此时可能出现报错该文件不可写入，其原因是该分区挂载时设置了只读，重新挂载该分区：</p>
+<p><img src="E:%5CTypora_pic%5C1583061387327.png" alt="1583061387327"></p>
+<p>再次编辑/etc/fstab进行修复</p>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Linux/" rel="tag"># Linux</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/02/21/install-hexo/" rel="next" title="install hexo">
+                <i class="fa fa-chevron-left"></i> install hexo
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/userphoto.JPG"
+                alt="宫宛莹" />
+            
+              <p class="site-author-name" itemprop="name">宫宛莹</p>
+              <p class="site-description motion-element" itemprop="description">此去必经年 往事散云烟</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/gonghewan" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:gonghewan@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-text">Linux基础</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#null"><span class="nav-text">系统分区</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#null"><span class="nav-text">VMware网络连接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#null"><span class="nav-text">Linux个目录的作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#null"><span class="nav-text">服务器注意事项</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#null"><span class="nav-text">Linux常用命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-text">文件处理命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-text">权限管理命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-text">用户管理命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-text">压缩解压命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-text">网络命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-text">关机重启命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-text">Vim</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-text">软件包管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-text">用户和用户组管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-text">权限管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-text">文件系统管理</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=3&id=2061924327&auto=1&height=66">
+  </iframe>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">宫宛莹</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count"></span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
